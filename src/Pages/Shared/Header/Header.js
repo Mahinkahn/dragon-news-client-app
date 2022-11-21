@@ -8,9 +8,17 @@ import { FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
+import Button from 'react-bootstrap/Button';
 
 const Header = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(erro => console.error(erro))
+    }
+
     return (
         <Navbar collapseOnSelect className='mb-4' expand="lg" bg="light" variant="light">
             <Container>
@@ -33,11 +41,28 @@ const Header = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
+                        <Nav.Link href="#deets">
+                            {
+                                user?.uid ?
+                                    <>
+                                        <span> {user?.displayName}</span>
+                                        <Button variant="light" onClick={handleLogOut}>Log Out</Button>
+                                    </>
+                                    :
+                                    <>
+                                        <Link to='/login'>Login</Link>
+                                        <Link to='/register'>Register</Link>
+                                    </>
+                            }
+
+                        </Nav.Link>
                         <Nav.Link eventKey={2} href="#memes">
                             {
-                                user.photoURL ?
-                                    <Image style={{ height: '30px' }} roundedCircle src={user.photoURL}></Image>
+                                user?.photoURL ?
+                                    <Image
+                                        style={{ height: '30px' }}
+                                        roundedCircle src={user?.photoURL}>
+                                    </Image>
                                     : <FaUser></FaUser>
                             }
                         </Nav.Link>
