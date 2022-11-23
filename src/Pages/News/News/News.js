@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 const News = () => {
     const news = useLoaderData();
@@ -10,9 +10,7 @@ const News = () => {
         <Card>
             <Card.Img variant="top" src={image_url} />
             <Card.Body>
-                <Card.Title>
-                    {title}
-                </Card.Title>
+                <Card.Title>{title}</Card.Title>
                 <Card.Text>
                     {details}
                 </Card.Text>

@@ -3,13 +3,15 @@ import { useLoaderData } from 'react-router-dom';
 import NewsSummaryCard from '../../Shared/NewsSummaryCard/NewsSummaryCard';
 
 const Home = () => {
-    const allnews = useLoaderData();
+    const allNews = useLoaderData();
     return (
         <div>
-            <h2>Dragon News Home : {allnews.length}</h2>
+            <h2>Dragon News Home: {allNews.length}</h2>
             {
-                allnews.map(news => <NewsSummaryCard key={news._id}
-                    news={news}></NewsSummaryCard>)
+                allNews.map(news => <NewsSummaryCard
+                    key={news._id}
+                    news={news}
+                ></NewsSummaryCard>)
             }
         </div>
     );

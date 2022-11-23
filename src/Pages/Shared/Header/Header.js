@@ -16,7 +16,7 @@ const Header = () => {
     const handleLogOut = () => {
         logOut()
             .then(() => { })
-            .catch(erro => console.error(erro))
+            .catch(error => console.error(error))
     }
 
     return (
@@ -26,7 +26,7 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#">All News</Nav.Link>
+                        <Nav.Link href="#features">All News</Nav.Link>
                         <Nav.Link href="#pricing">Pricing</Nav.Link>
                         <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -41,12 +41,12 @@ const Header = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">
+                        <>
                             {
                                 user?.uid ?
                                     <>
-                                        <span> {user?.displayName}</span>
-                                        <Button variant="light" onClick={handleLogOut}>Log Out</Button>
+                                        <span>{user?.displayName}</span>
+                                        <Button variant="light" onClick={handleLogOut}>Log out</Button>
                                     </>
                                     :
                                     <>
@@ -55,17 +55,18 @@ const Header = () => {
                                     </>
                             }
 
-                        </Nav.Link>
-                        <Nav.Link eventKey={2} href="#memes">
-                            {
-                                user?.photoURL ?
-                                    <Image
-                                        style={{ height: '30px' }}
-                                        roundedCircle src={user?.photoURL}>
-                                    </Image>
-                                    : <FaUser></FaUser>
+
+                        </>
+                        <Link to="/profile">
+                            {user?.photoURL ?
+                                <Image
+                                    style={{ height: '30px' }}
+                                    roundedCircle
+                                    src={user?.photoURL}>
+                                </Image>
+                                : <FaUser></FaUser>
                             }
-                        </Nav.Link>
+                        </Link>
                     </Nav>
                     <div className='d-lg-none'>
                         <LeftSideNav></LeftSideNav>

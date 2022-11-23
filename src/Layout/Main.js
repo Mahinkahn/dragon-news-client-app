@@ -25,7 +25,6 @@ const Main = () => {
             </Container>
             <Footer></Footer>
         </div>
-
     );
 };
 
